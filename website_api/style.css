@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 30;
@@ -79,4 +80,86 @@ th, td {
 }
 .select select:disabled ~ .select_arrow {
     border-top-color: #cccccc;
+=======
+* {
+    margin: 0;
+    padding: 30;
+    box-sizing: border-box;
+    font-family: 'Kanit', sans-serif;
+}
+th, td {
+    border-bottom: 1px solid #ddd;
+  }
+#demo
+{
+    font-size: 16px;
+}
+::-webkit-scrollbar {
+    width: 2px;
+    height: 13px;
+   }
+   ::-webkit-scrollbar-thumb {
+    background: #585a69;
+    border-radius: 10px;
+   }
+   ::-webkit-scrollbar-thumb:hover{
+    background: #6b6b6b;
+   }
+   ::-webkit-scrollbar-track{
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: inset 7px 10px 12px #f0f0f0;
+   }
+.select {
+    font-size: 5em;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    width: 100%;
+}    .select select {
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+        padding: 13px 18px;
+        outline: 0;
+        border: 0px solid #000000;
+        border-radius: 5px;
+        background: #e6e6e6;
+        color: #7b7b7b;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+        .select select::-ms-expand {
+            display: none;
+        }
+        .select select:hover,
+        .select select:focus {
+            color: #707070;
+            background: #d4d4d4;
+        }
+        .select select:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+.select_arrow {
+    position: absolute;
+    top: 9px;
+    right: 51px;
+    width: 17px;
+    height: 17px;
+    border: solid #7b7b7b;
+    border-width: 0 4px 4px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+    border-color: #000000;
+}
+.select select:disabled ~ .select_arrow {
+    border-top-color: #cccccc;
+>>>>>>> b4fb7e9a98315cfb9d618c27ad03297afd57a51b
 }
