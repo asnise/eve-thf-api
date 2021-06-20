@@ -56,10 +56,10 @@ function scheduleA(event) {
             data_real = JSON.parse(request_real.responseText);
             soucre = {
                 time: data_real[0].time,
-                sell: data_real[0].sell,
-                buy: data_real[0].buy,
-                lowest_sell: data_real[0].lowest_sell,
-                highest_buy: data_real[0].highest_buy,
+                sell: Intl.NumberFormat('en-US').format(data_real[0].sell),
+                buy: Intl.NumberFormat('en-US').format(data_real[0].buy),
+                lowest_sell: Intl.NumberFormat('en-US').format(data_real[0].lowest_sell),
+                highest_buy: Intl.NumberFormat('en-US').format(data_real[0].highest_buy),
             }
             console.log(soucre);
             let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
