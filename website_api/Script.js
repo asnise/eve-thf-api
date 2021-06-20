@@ -1,6 +1,9 @@
 var request = new XMLHttpRequest();
+var request_real = new XMLHttpRequest();
 request.open('GET', 'https://api.eve-echoes-market.com/market-stats/stats.csv', true);
 var data_call = {};
+var data_real = {} , soucre = {};
+var heander_contact = [];
 request.send();
 request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
@@ -18,17 +21,18 @@ request.onload = function () {
                     lowest_sell: cells[5],
                     highest_buy: cells[6]
                 }
+                heander_contact.push(cells[1]);
             }
         }
         delete data_call.name;
         console.log(data_call);
 
-        let text = '<select onchange="scheduleA.call(this, event)">'
+        let text_op = ''
         for (let x in data_call) {
-            text += "<option>" + data_call[x].name;
+            text_op  += "<option>" + data_call[x].name;
         }
-        text += "</select>"
-        document.getElementById("dvCSV").innerHTML = text;
+        text_op += "</select>"
+        document.getElementById("browsers").innerHTML = text_op;
 
 
         let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
@@ -52,11 +56,40 @@ request.onload = function () {
     }
 };
 
+
 function scheduleA(event) {
-    var res_send = this.options[this.selectedIndex].text.toLowerCase().replace(/\s/g, "");
-    let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
-    let txt_sec ='';
-    txt += "<tr><td>" + data_call[res_send].name + "</td>" + "<td>" + data_call[res_send].sell + " ISK" + "</td>" + "<td>" + data_call[res_send].buy+ " ISK" + "</td>" + "<td>" + data_call[res_send].lowest_sell+ " ISK" + "</td>" + "<td>" + data_call[res_send].highest_buy+ " ISK" + "</td>" + "</tr>";
-    txt += "</table>"
-    document.getElementById("select_item").innerHTML = txt + txt_sec;
+    var res_send = document.getElementById("myInput").value.toLowerCase().replace(/\s/g, "");
+    request_real.open('GET', 'https://api.eve-echoes-market.com/market-stats/' + data_call[res_send].id, true);
+    request_real.send();
+    request_real.onload = function () {
+        if (request_real.status >= 200 && request_real.status < 400) {
+            data_real = JSON.parse(request_real.responseText);
+            soucre = {
+                time: data_real[0].time,
+                sell: data_real[0].sell,
+                buy: data_real[0].buy,
+                lowest_sell: data_real[0].lowest_sell,
+                highest_buy: data_real[0].highest_buy,
+            }
+            console.log(soucre);
+            let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
+            let txt_sec ='';
+            txt += "<tr><td>" + data_call[res_send].name + "</td>" + "<td>" + soucre.sell.toString() + " ISK" + "</td>" + "<td>" + soucre.buy.toString()+ " ISK" + "</td>" + "<td>" + soucre.lowest_sell.toString()+ " ISK" + "</td>" + "<td>" + soucre.highest_buy.toString()+ " ISK" + "</td>" + "</tr>";
+            txt += "</table>"
+            document.getElementById("select_item").innerHTML = txt + txt_sec;
+        }
+    }
 }
+
+function download(content, fileName, contentType) {
+    const a = document.createElement("a");
+    const file = new Blob([content], { type: contentType });
+    a.href = URL.createObjectURL(file);
+    a.download = fileName;
+    a.click();
+   }
+   
+   function onDownload(){
+    download(JSON.stringify(data_call), "data.json", "text/plain");
+   }
+

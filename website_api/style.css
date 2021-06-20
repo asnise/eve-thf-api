@@ -1,9 +1,29 @@
+
 * {
     margin: 0;
     padding: 30;
     box-sizing: border-box;
     font-family: 'Kanit', sans-serif;
 }
+* { box-sizing: border-box; }
+body {
+  font: 16px Arial;
+}
+
+datalist {
+    width: 100%;
+}
+
+#myInput {
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+
 th, td {
     text-align: center;
     border-bottom: 1px solid #ddd;
