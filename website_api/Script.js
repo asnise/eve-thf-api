@@ -2,7 +2,7 @@ var request = new XMLHttpRequest();
 var request_real = new XMLHttpRequest();
 request.open('GET', 'https://api.eve-echoes-market.com/market-stats/stats.csv', true);
 var data_call = {};
-var data_real = {} , soucre = {};
+var data_real = {}, soucre = {};
 var heander_contact = [];
 request.send();
 request.onload = function () {
@@ -16,10 +16,10 @@ request.onload = function () {
                     id: cells[0],
                     name: cells[1],
                     time: cells[2],
-                    sell: cells[3],
-                    buy: cells[4],
-                    lowest_sell: cells[5],
-                    highest_buy: cells[6]
+                    sell: Intl.NumberFormat('en-US').format(cells[3]),
+                    buy: Intl.NumberFormat('en-US').format(cells[4]),
+                    lowest_sell: Intl.NumberFormat('en-US').format(cells[5]),
+                    highest_buy: Intl.NumberFormat('en-US').format(cells[6])
                 }
                 heander_contact.push(cells[1]);
             }
@@ -29,30 +29,20 @@ request.onload = function () {
 
         let text_op = ''
         for (let x in data_call) {
-            text_op  += "<option>" + data_call[x].name;
+            text_op += "<option>" + data_call[x].name;
         }
         text_op += "</select>"
         document.getElementById("browsers").innerHTML = text_op;
 
 
         let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
-        let txt_sec ='';
+        let txt_sec = '';
         for (let x in data_call) {
-            txt += "<tr><td>" + data_call[x].name + "</td>" + "<td>" + data_call[x].sell + " ISK" + "</td>" + "<td>" + data_call[x].buy+ " ISK" + "</td>" + "<td>" + data_call[x].lowest_sell+ " ISK" + "</td>" + "<td>" + data_call[x].highest_buy+ " ISK" + "</td>" + "</tr>";
+            txt += "<tr><td>" + data_call[x].name + "</td>" + "<td>" + data_call[x].sell + " ISK" + "</td>" + "<td>" + data_call[x].buy + " ISK" + "</td>" + "<td>" + data_call[x].lowest_sell + " ISK" + "</td>" + "<td>" + data_call[x].highest_buy + " ISK" + "</td>" + "</tr>";
         }
         txt += "</table>"
         document.getElementById("demo").innerHTML = txt + txt_sec;
         document.getElementById("update").innerHTML = "ข้อมูลราคาในวันที่ : " + data_call.vexor.time + " ซึ่งบางส่วนเป็นราคาโดยประมาณ";
-        
-        //document.getElementById("demo").innerHTML = JSON.stringify(data_call,null,6);
-        
-        /*let _tex = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ขายคาซื้อ</th></tr>'
-        let ros = '';
-        for (let x in data_call) {
-            ros += '<tr>'+ '<th>' + data_call[x].name + '</th>'+ '<th>' + data_call[x].sell + '</th>'+ '<th>' + data_call[x].buy + '</th>' + '</tr>';
-        }
-        _tex += "</table>"
-        document.getElementById("demo").innerHTML = _tex;*/
     }
 };
 
@@ -73,8 +63,8 @@ function scheduleA(event) {
             }
             console.log(soucre);
             let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
-            let txt_sec ='';
-            txt += "<tr><td>" + data_call[res_send].name + "</td>" + "<td>" + soucre.sell.toString() + " ISK" + "</td>" + "<td>" + soucre.buy.toString()+ " ISK" + "</td>" + "<td>" + soucre.lowest_sell.toString()+ " ISK" + "</td>" + "<td>" + soucre.highest_buy.toString()+ " ISK" + "</td>" + "</tr>";
+            let txt_sec = '';
+            txt += "<tr><td>" + data_call[res_send].name + "</td>" + "<td>" + soucre.sell.toString() + " ISK" + "</td>" + "<td>" + soucre.buy.toString() + " ISK" + "</td>" + "<td>" + soucre.lowest_sell.toString() + " ISK" + "</td>" + "<td>" + soucre.highest_buy.toString() + " ISK" + "</td>" + "</tr>";
             txt += "</table>"
             document.getElementById("select_item").innerHTML = txt + txt_sec;
         }
@@ -87,9 +77,9 @@ function download(content, fileName, contentType) {
     a.href = URL.createObjectURL(file);
     a.download = fileName;
     a.click();
-   }
-   
-   function onDownload(){
+}
+
+function onDownload() {
     download(JSON.stringify(data_call), "data.json", "text/plain");
-   }
+}
 
