@@ -4,8 +4,15 @@
     box-sizing: border-box;
     font-family: 'Kanit', sans-serif;
 }
+th, td {
+    border-bottom: 1px solid #ddd;
+  }
+#demo
+{
+    font-size: 16px;
+}
 ::-webkit-scrollbar {
-    width: 13px;
+    width: 2px;
     height: 13px;
    }
    ::-webkit-scrollbar-thumb {
@@ -27,14 +34,13 @@
     margin-bottom: 15px;
     width: 100%;
 }    .select select {
-        
         display: inline-block;
         width: 100%;
         cursor: pointer;
         padding: 13px 18px;
         outline: 0;
         border: 0px solid #000000;
-        border-radius: 0px;
+        border-radius: 5px;
         background: #e6e6e6;
         color: #7b7b7b;
         appearance: none;
