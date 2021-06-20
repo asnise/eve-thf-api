@@ -31,7 +31,7 @@ request.onload = function () {
         document.getElementById("dvCSV").innerHTML = text;
 
 
-        let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาถูกที่สุดในตลาด</th><th>ราคาแพงที่สุดในตลาด</th></tr>'
+        let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
         let txt_sec ='';
         for (let x in data_call) {
             txt += "<tr><td>" + data_call[x].name + "</td>" + "<td>" + data_call[x].sell + " ISK" + "</td>" + "<td>" + data_call[x].buy+ " ISK" + "</td>" + "<td>" + data_call[x].lowest_sell+ " ISK" + "</td>" + "<td>" + data_call[x].highest_buy+ " ISK" + "</td>" + "</tr>";
@@ -54,7 +54,7 @@ request.onload = function () {
 
 function scheduleA(event) {
     var res_send = this.options[this.selectedIndex].text.toLowerCase().replace(/\s/g, "");
-    let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาถูกที่สุดในตลาด</th><th>ราคาแพงที่สุดในตลาด</th></tr>'
+    let txt = '<table style="width:100%"><tr><th>ชื่อไอเทม</th><th>ราคาขาย</th><th>ราคาซื้อ</th><th>ราคาขายต่ำสุดในตลาด</th><th>ราคาซื้อสูงสุดในตลาด</th></tr>'
     let txt_sec ='';
     txt += "<tr><td>" + data_call[res_send].name + "</td>" + "<td>" + data_call[res_send].sell + " ISK" + "</td>" + "<td>" + data_call[res_send].buy+ " ISK" + "</td>" + "<td>" + data_call[res_send].lowest_sell+ " ISK" + "</td>" + "<td>" + data_call[res_send].highest_buy+ " ISK" + "</td>" + "</tr>";
     txt += "</table>"
