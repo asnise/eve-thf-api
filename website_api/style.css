@@ -5,6 +5,19 @@
     font-family: 'Kanit', sans-serif;
 }
 
+#hide_bt {
+    background: #000000; 
+    border-radius: 5px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+  }
+
 * {
     box-sizing: border-box;
 }
@@ -38,6 +51,7 @@ th, td,tr {
 }
 
 #demo {
+    display: none;
     font-size: 16px;
 }
 

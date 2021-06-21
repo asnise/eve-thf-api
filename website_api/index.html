@@ -10,16 +10,16 @@
 <title>ราคา ไอเทมในตลาด Eve Echoes</title>
 
 <body>
-
     <h1>เมนูตลาด</h1>
     <center>
         <datalist id="browsers">
         </datalist>
         <input list="browsers" name="browser" id="myInput" placeholder="ค้นหา ด้วยชื่อ.." value=""onChange='send_item.call(this, event)'>
         <div id="capture" style="padding: 10px;"><div id="select_item"></div></div>
+        <button onclick="hide()" id="hide_bt">ดูตรางราคาโดยประมาณ</button>
         <div id="update"></div>
         <div id="demo"></div>
-        <div id="capture_screen"></div>
     </center>
+    <div id="capture_screen"></div>
 
 </body>

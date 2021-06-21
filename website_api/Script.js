@@ -46,6 +46,17 @@ request.onload = function () {
     }
 };
 
+function hide() {
+    var x = document.getElementById("demo");
+    if (x.style.display === "none") {
+    document.getElementById("hide_bt").innerHTML = "ซ่อนตรางราคาโดยประมาณ"
+      x.style.display = "block";
+    } else {
+        document.getElementById("hide_bt").innerHTML = "ดูตรางราคาโดยประมาณ"
+      x.style.display = "none";
+    }
+  }
+
 
 function send_item(event) {
     var res_send = document.getElementById("myInput").value.toLowerCase().replace(/\s/g, "");
