@@ -8,6 +8,10 @@
 * {
     box-sizing: border-box;
 }
+#capture_screen
+{
+    display: block;
+}
 
 body {
     font: 16px Arial;

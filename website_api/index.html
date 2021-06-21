@@ -1,5 +1,7 @@
 <html>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&amp;display=swap" rel="stylesheet">
 <script src="Script.js"></script>
 <link rel="stylesheet" href="style.css">
@@ -11,13 +13,13 @@
 
     <h1>เมนูตลาด</h1>
     <center>
-        <input list="browsers" name="browser" id="myInput" placeholder="ค้นหา ด้วยชื่อ.." value=""
-            onChange='scheduleA.call(this, event)'>
         <datalist id="browsers">
         </datalist>
-        <div id="select_item"></div>
+        <input list="browsers" name="browser" id="myInput" placeholder="ค้นหา ด้วยชื่อ.." value=""onChange='send_item.call(this, event)'>
+        <div id="capture" style="padding: 10px;"><div id="select_item"></div></div>
         <div id="update"></div>
         <div id="demo"></div>
+        <div id="capture_screen"></div>
     </center>
 
 </body>

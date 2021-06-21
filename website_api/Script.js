@@ -47,7 +47,7 @@ request.onload = function () {
 };
 
 
-function scheduleA(event) {
+function send_item(event) {
     var res_send = document.getElementById("myInput").value.toLowerCase().replace(/\s/g, "");
     request_real.open('GET', 'https://api.eve-echoes-market.com/market-stats/' + data_call[res_send].id, true);
     request_real.send();
@@ -69,6 +69,27 @@ function scheduleA(event) {
             document.getElementById("select_item").innerHTML = txt + txt_sec;
         }
     }
+}
+
+function convert()
+{
+    var canvas = document.getElementById('capture_item');
+    var dataURL = canvas.toDataURL();
+    var image = new Image();
+    image.src = dataURL;
+    var w = window.open("");
+    w.document.write(image.outerHTML);
+    document.getElementById("capture_screen").style.display === "none";
+}
+
+function captrue() {
+    document.getElementById("capture_screen").style.display === "block";
+    $('#capture_item').remove();
+    html2canvas(document.querySelector("#capture")).then(canvas => {
+        document.getElementById("capture_screen").appendChild(canvas)
+        canvas.setAttribute("id", "capture_item");
+    });
+    setTimeout(convert, 3000)
 }
 
 function download(content, fileName, contentType) {
